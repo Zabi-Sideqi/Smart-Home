@@ -13,13 +13,15 @@ namespace Smart_Home
             Washer washer = new Washer("LG", 7);
             Refrigerator refrigerator = new Refrigerator("Samsung", 4);
             RobotVacuum robotVacuum = new RobotVacuum("Xiaomi", 80);
+            Coffeemachine coffeeMachine = new Coffeemachine("Philips", 6);
 
             devices.Add(oven);
             devices.Add(washer);
             devices.Add(refrigerator);
             devices.Add(robotVacuum);
+            devices.Add(coffeeMachine);
 
-            RunMorningRoutine(devices);
+            RunMorrningRoutine(devices);
 
             Console.WriteLine();
 
@@ -28,7 +30,7 @@ namespace Smart_Home
             Console.ReadLine();
         }
 
-        static void RunMorningRoutine(List<object> devices)
+        static void RunMorrningRoutine(List<object> devices)
         {
             foreach (object device in devices)
             {
@@ -51,6 +53,11 @@ namespace Smart_Home
                 {
                     robotVacuum.StartCleaning();
                     robotVacuum.StopCleaning();
+                }
+                else if (device is Coffeemachine coffeeMachine)
+                {
+                    coffeeMachine.StartBrewing();
+                    coffeeMachine.StopBrewing();
                 }
             }
         }
@@ -75,6 +82,10 @@ namespace Smart_Home
                 {
                     robotVacuum.PrintCleaningEnergy();
                 }
+                else if (device is Coffeemachine coffeeMachine)
+                {
+                    coffeeMachine.PrintBrewingEnergy();
+                }
             }
         }
     }
@@ -82,18 +93,11 @@ namespace Smart_Home
 
 
 /*
-1. Varför behövde du kontrollera vilken typ varje objekt hade?
-Svar: Eftersom listan är List<object> vet programmet inte vilken typ objekten har.
+När jag lade till CoffeeMachine behövde jag ändra 3 ställen:
 
-2. Vad händer om du lägger till en ny klass CoffeeMachine?
-Svar: Jag måste lägga till nya if-satser för CoffeeMachine eftersom programmet känner inte automatisk till den nya typen.
+1. Skapa klassen CoffeeMachine.
+2. Lägga till CoffeeMachine i RunMorningRoutine().
+3. Lägga till CoffeeMachine i ReportAllEnergy().
 
-3. Vilka metoder måste du ändra om du lägger till CoffeeMachine?
-Svar: RunMorningRoutine() och ReportAllEnergy().
-
-4. Vad är problemet med att listan är List<object>?
-Svar: Alla objekt behandlas som object och måste typkontrolleras och castas.
-
-5. Vad händer om du råkar glömma en apparattyp i ReportAllEnergy()?
-Svar: Den apparatens energiförbrukning kommer inte att visas/skrivas inte u.
+Det är ett problem eftersom man måste ändra flera metoder varje gång en ny apparat läggs till.
 */
