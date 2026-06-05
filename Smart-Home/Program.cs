@@ -86,7 +86,7 @@ namespace Smart_Home
 Svar: Eftersom listan är List<object> vet programmet inte vilken typ objekten har.
 
 2. Vad händer om du lägger till en ny klass CoffeeMachine?
-Svar: Jag måste lägga till nya if-satser för CoffeeMachine.
+Svar: Jag måste lägga till nya if-satser för CoffeeMachine eftersom programmet känner inte automatisk till den nya typen.
 
 3. Vilka metoder måste du ändra om du lägger till CoffeeMachine?
 Svar: RunMorningRoutine() och ReportAllEnergy().
@@ -95,5 +95,5 @@ Svar: RunMorningRoutine() och ReportAllEnergy().
 Svar: Alla objekt behandlas som object och måste typkontrolleras och castas.
 
 5. Vad händer om du råkar glömma en apparattyp i ReportAllEnergy()?
-Svar: Den apparatens energiförbrukning kommer inte att visas.
+Svar: Den apparatens energiförbrukning kommer inte att visas/skrivas inte u.
 */
