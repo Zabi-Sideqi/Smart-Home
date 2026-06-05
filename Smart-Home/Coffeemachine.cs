@@ -1,26 +1,37 @@
 ﻿namespace Smart_Home
 {
-    internal class Coffeemachine
+    public class CoffeeMachine : Appliance
     {
-        public string Brand { get; set; }
         public int CupsPerBrew { get; set; }
 
-        public Coffeemachine(string brand, int cupsPerBrew)
+        public CoffeeMachine(string brand, string room, int cupsPerBrew)
+            : base(brand, room)
         {
-            Brand = brand;
+            // Anropa basklassens konstruktor. 
+            // Sätt CupsPerBrew. 
             CupsPerBrew = cupsPerBrew;
         }
-        public void StartBrewing()
+        public override string GetInfo()
         {
-            Console.WriteLine($"{Brand} coffeemachine starts brewing.");
+            return $"{base.GetInfo()} with a capacity of {CupsPerBrew} cups per brew";
         }
-        public void StopBrewing()
+
+        public override void TurnOn()
         {
-            Console.WriteLine($"{Brand} coffeemachine has stops brewing.");
+            IsOn = true ;
+            Console.WriteLine($"{Brand} coffee machine starts brewing.");
         }
-        public void PrintBrewingEnergy()
+        public override void TurnOff()
         {
-            Console.WriteLine($"{Brand} coffeemachine uses 0.3 kWh per brew.");
+            IsOn = false;
+            Console.WriteLine($"{Brand} coffee machine stops brewing.");
         }
+
+    public override double GetDailyEnergyUsage()
+        {
+            // Anta att varje bryggning använder 0.1 kWh per kopp. 
+            return 0.3;
+        }
+
     }
 }

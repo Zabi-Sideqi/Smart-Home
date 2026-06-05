@@ -4,27 +4,32 @@ using System.Text;
 
 namespace Smart_Home
 {
-    internal class Refrigerator
+    public class Refrigerator : Appliance
     {
-        public string Brand { get; set; }
         public int Temperature { get; set; }
-
-        public Refrigerator(string brand, int temperature)
+        public Refrigerator(string brand, string room, int temperature)
+            : base(brand, room)
         {
-            Brand = brand;
             Temperature = temperature;
         }
-        public void StartCooling()
+        public override string GetInfo()
         {
-            Console.WriteLine($"{Brand} refrigerator starts cooling.");
+            return $"{base.GetInfo()} set to {Temperature}°C";
         }
-        public void StopCooling()
+        public override void TurnOn()
         {
-            Console.WriteLine($"{Brand} refrigerator stops cooling.");
+            IsOn = true;
+            Console.WriteLine($"{Brand} refrigerator is now cooling.");
         }
-        public void PrintCoolingEnergy()
+        public override void TurnOff()
         {
-            Console.WriteLine($"{Brand} refrigerator uses 3.6 kWh per day.");
+            IsOn = false;
+            Console.WriteLine($"{Brand} refrigerator is now off.");
+        }
+        public override double GetDailyEnergyUsage()
+        {
+            // Anta att kylskåpet använder 3.6 kWh per dag när det är på. 
+            return 3.6;
         }
     }
 }

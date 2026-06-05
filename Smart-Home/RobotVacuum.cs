@@ -4,30 +4,36 @@ using System.Text;
 
 namespace Smart_Home
 {
-    internal class RobotVacuum
+    public class RobotVacuum : Appliance
     {
-        public string Brand { get; set; }
         public int BatteryLevel { get; set; }
 
-        public RobotVacuum(string brand, int batteryLevel)
+        public RobotVacuum(string brand, string room, int batteryLevel)
+            :base (brand, room)
         {
-            Brand = brand;
             BatteryLevel = batteryLevel;
         }
-        public void StartCleaning()
+        public override string GetInfo()
         {
-            Console.WriteLine($"{Brand} robot vacuum is starts cleaning.");
+            return $"{base.GetInfo()} with a battery level of {BatteryLevel}%";
         }
-        public void StopCleaning()
+        public override void TurnOn()
         {
-            Console.WriteLine($"{Brand} robot vacuum has stops cleaning.");
+            IsOn = true ;
+            Console.WriteLine($"{Brand} robot vacuum starts cleaning.");
         }
-        public void PrintCleaningEnergy()
+        public override void TurnOff()
         {
-            Console.WriteLine($"{Brand} robot vacuum uses 0.4 kWh per cleaning .");
+            IsOn = false;
+            Console.WriteLine($"{Brand} robot vacuum stops cleaning.");
         }
-
+        public override double GetDailyEnergyUsage()
+        {
+            // Anta att robotdammsugaren använder 0.2 kWh per timme när den är på. 
+            return 0.4;
+        }
 
 
     }
+
 }

@@ -92,12 +92,4 @@ namespace Smart_Home
 }
 
 
-/*
-När jag lade till CoffeeMachine behövde jag ändra 3 ställen:
 
-1. Skapa klassen CoffeeMachine.
-2. Lägga till CoffeeMachine i RunMorningRoutine().
-3. Lägga till CoffeeMachine i ReportAllEnergy().
-
-Det är ett problem eftersom man måste ändra flera metoder varje gång en ny apparat läggs till.
-*/

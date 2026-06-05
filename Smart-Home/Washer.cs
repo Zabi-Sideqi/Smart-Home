@@ -3,28 +3,39 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Smart_Home
-{
-    internal class Washer
+{   
+    public class Washer : Appliance
     {
-        public string Brand { get; set; }
         public int CapacityKg { get; set; }
 
-        public Washer(string brand, int capacityKg)
+        public Washer(string brand, string room, int capacitykg) 
+            : base (brand, room)
+
         {
-            Brand = brand;
-            CapacityKg = capacityKg;
+            CapacityKg = capacitykg;
         }
-        public void StartWash()
+        public override string GetInfo()
         {
-            Console.WriteLine($"{Brand} washer starts washing.");
+            return $"{base.GetInfo()} with a capacity of {CapacityKg} kg";
         }
-        public void StopWash()
+        public override void TurnOn()
         {
-            Console.WriteLine($"{Brand} washer stops washing.");
+            IsOn = true ;
+            Console.WriteLine($"{Brand} washer starts a washing program.");
         }
-        public void PrintWashEnergy()
+        public override void TurnOff()
         {
-            Console.WriteLine($"{Brand} washer uses 1.2 kWh per wash.");
+            IsOn = false;
+            Console.WriteLine($"{Brand} washer stops the washing program.");
         }
+        public override double GetDailyEnergyUsage()
+        {
+            // Returnera en uppskattning av energiförbrukningen baserat på kapaciteten. 
+            // Exempel: 0.5 kWh per kg kapacitet.
+            return 1.2;
+        }
+
     }
+    
+          
 }
