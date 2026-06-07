@@ -1,8 +1,15 @@
 ﻿namespace Smart_Home
 {
-    public class CoffeeMachine : Appliance
+    public class CoffeeMachine : Appliance, ISchedulable
     {
         public int CupsPerBrew { get; set; }
+
+        public DateTime NextRun { get; set; }
+        public void Schedule(DateTime time)
+        {
+            NextRun = time;
+            Console.WriteLine($"{Brand} coffee machine scheduled to brew at {NextRun}.");
+        }
 
         public CoffeeMachine(string brand, string room, int cupsPerBrew)
             : base(brand, room)

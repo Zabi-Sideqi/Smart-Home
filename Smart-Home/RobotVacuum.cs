@@ -4,10 +4,16 @@ using System.Text;
 
 namespace Smart_Home
 {
-    public class RobotVacuum : Appliance
+    public class RobotVacuum : Appliance, ISchedulable
     {
         public int BatteryLevel { get; set; }
+        public DateTime NextRun { get; set; }
 
+        public void Schedule(DateTime time)
+        {
+            NextRun = time;
+            Console.WriteLine($"{Brand} robot vacuum scheduled to clean at {NextRun}.");
+        }
         public RobotVacuum(string brand, string room, int batteryLevel)
             :base (brand, room)
         {
