@@ -26,7 +26,7 @@ namespace Smart_Home
         {
             return $"{base.GetInfo()} with a capacity of {CapacityKg} kg";
         }
-        public override void TurnOn()
+        public  void TurnOn()
         {
             IsOn = true ;
             Console.WriteLine($"{Brand} washer starts a washing program.");
