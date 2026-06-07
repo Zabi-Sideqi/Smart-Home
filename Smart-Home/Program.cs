@@ -7,89 +7,48 @@ namespace Smart_Home
     {
         static void Main()
         {
-            List<object> devices = new List<object>();
+            List<Appliance> devices = new List<Appliance>();
 
-            Oven oven = new Oven("Electrolux", 250);
-            Washer washer = new Washer("LG", 7);
-            Refrigerator refrigerator = new Refrigerator("Samsung", 4);
-            RobotVacuum robotVacuum = new RobotVacuum("Xiaomi", 80);
-            Coffeemachine coffeeMachine = new Coffeemachine("Philips", 6);
+            devices.Add(new Washer("LG", "Laundry Room", 7));
+            devices.Add(new Refrigerator("Samsung", "Kitchen", 8));
+            devices.Add(new Oven("ElectroLux", "Kitchen", 250));
+            devices.Add(new RobotVacuum("Xiaomi", "Living Room", 80));
+            devices.Add(new CoffeeMachine("Philips", "Kitchen", 6));
 
-            devices.Add(oven);
-            devices.Add(washer);
-            devices.Add(refrigerator);
-            devices.Add(robotVacuum);
-            devices.Add(coffeeMachine);
+            foreach (Appliance device in devices)
 
-            RunMorrningRoutine(devices);
-
-            Console.WriteLine();
-
-            ReportAllEnergy(devices);
+            {
+                Console.WriteLine(device.GetInfo());
+                device.TurnOn();
+                Console.WriteLine($"Daily energy usage: {device.GetDailyEnergyUsage()} kWh");
+                device.TurnOff();
+                Console.WriteLine();
+            }
 
             Console.ReadLine();
-        }
 
-        static void RunMorrningRoutine(List<object> devices)
-        {
-            foreach (object device in devices)
-            {
-                if (device is Washer washer)
-                {
-                    washer.StartWash();
-                    washer.StopWash();
-                }
-                else if (device is Oven oven)
-                {
-                    oven.StartHeating();
-                    oven.StopHeating();
-                }
-                else if (device is Refrigerator refrigerator)
-                {
-                    refrigerator.StartCooling();
-                    refrigerator.StopCooling();
-                }
-                else if (device is RobotVacuum robotVacuum)
-                {
-                    robotVacuum.StartCleaning();
-                    robotVacuum.StopCleaning();
-                }
-                else if (device is Coffeemachine coffeeMachine)
-                {
-                    coffeeMachine.StartBrewing();
-                    coffeeMachine.StopBrewing();
-                }
-            }
-        }
 
-        static void ReportAllEnergy(List<object> devices)
-        {
-            foreach (object device in devices)
-            {
-                if (device is Washer washer)
-                {
-                    washer.PrintWashEnergy();
-                }
-                else if (device is Oven oven)
-                {
-                    oven.PrintHeatingEnergy();
-                }
-                else if (device is Refrigerator refrigerator)
-                {
-                    refrigerator.PrintCoolingEnergy();
-                }
-                else if (device is RobotVacuum robotVacuum)
-                {
-                    robotVacuum.PrintCleaningEnergy();
-                }
-                else if (device is Coffeemachine coffeeMachine)
-                {
-                    coffeeMachine.PrintBrewingEnergy();
-                }
-            }
+
         }
     }
 }
 
 
 
+/*
+1. Varför fungerar device.TurnOn() trots att device har typen Appliance?
+
+Det fungerar eftersom TurnOn() finns i Appliance.
+C# använder polymorfism och kör rätt metod för den apparat som finns i objektet.
+
+2. Vilken metod körs om objektet egentligen är en RobotVacuum?
+
+Då körs RobotVacuums TurnOn()-metod.
+Det är inte Appliance-metoden som körs.
+
+3. Vad blev bättre jämfört med List<object>?
+
+Koden blev enklare att skriva och läsa.
+Vi behöver inte använda if, is eller casting för varje apparat.
+Det blir också lättare att lägga till nya apparater.
+*/
