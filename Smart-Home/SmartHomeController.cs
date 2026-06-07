@@ -66,19 +66,19 @@ namespace Smart_Home
             return total;
         }
 
-        public void ScheduleAllDevicesWrong(DateTime time)
+        public void ScheduleAllSchedulableDevices(DateTime time)
         {
             foreach (Appliance device in _devices)
             {
-                device.Schedule(time);
+
+                // 1. Kontrollera om device implementerar ISchedulable. 
+                // 2. Casta device till ISchedulable. 
+                // 3. Anropa Schedule(time). 
+                if (device is ISchedulable schedulable)
+                {
+                    schedulable.Schedule(time);
+                }
             }
         }
     }
 }
-/*
-Varför kompilerar inte koden?
-
-Koden kompilerar inte eftersom Appliance inte har metoden Schedule().
-Bara klasser som implementerar ISchedulable har Schedule().
-Därför kan vi inte anropa Schedule() direkt på en Appliance.
-*/

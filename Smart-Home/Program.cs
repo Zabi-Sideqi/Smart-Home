@@ -28,12 +28,18 @@ namespace Smart_Home
 
             Console.WriteLine();
 
+
+
+            controller.ScheduleAllSchedulableDevices
+                (DateTime.Now.AddHours(2));
             double totalEnergy = controller.GetTotalDailyEnergyUsage();
+            
             Console.WriteLine($"Total daily energy usage: {totalEnergy} kWh");
 
-            Console.WriteLine();
-
             controller.TurnOffAll();
+            
+
+            Console.WriteLine();
 
 
 
@@ -42,4 +48,25 @@ namespace Smart_Home
     }
 }
 
+/*
+1. Varför kan vi inte anropa Schedule() direkt på en variabel av typen Appliance?
 
+Eftersom Appliance inte har metoden Schedule().
+Bara klasser som implementerar ISchedulable har den metoden.
+
+2. Vad gör interface-kontrollen med "is"?
+
+Den kontrollerar om objektet implementerar ISchedulable.
+
+3. Varför behöver vi casta till ISchedulable?
+
+För att kunna använda Schedule()-metoden.
+
+4. Vilka apparater blev schemalagda?
+
+Washer, RobotVacuum och CoffeeMachine.
+
+5. Varför blev inte Refrigerator, Oven och AirConditioner schemalagda?
+
+Eftersom de inte implementerar ISchedulable.
+*/
