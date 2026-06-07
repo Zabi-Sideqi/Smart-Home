@@ -15,7 +15,9 @@ namespace Smart_Home
             controller.AddDevice(new Refrigerator("Samsung", "Kitchen", 8));
             controller.AddDevice(new Oven("ElectroLux", "Kitchen", 250));
             controller.AddDevice(new RobotVacuum("Xiaomi", "Living Room", 80));
+            controller.AddDevice(new AirConditioner("Daikin", "Bedroom", 16));
             controller.AddDevice(new CoffeeMachine("Philips", "Kitchen", 6));
+
 
 
             controller.PrintStatusReport();
