@@ -18,7 +18,13 @@ namespace Smart_Home
             return $"{base.GetInfo()} with maximum temperature of {MaxTemperature}°C";
 
         }
-        public override void TurnOn()
+        //public override void TurnOn()
+        //{
+        //    IsOn = true;
+        //    Console.WriteLine($"{Brand} oven starts preheating.");
+        //}
+
+        public sealed override void TurnOn()
         {
             IsOn = true;
             Console.WriteLine($"{Brand} oven starts preheating.");
