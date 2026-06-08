@@ -26,7 +26,7 @@ namespace Smart_Home
             
         }
 
-        public void TurnOn()
+        public virtual void TurnOn()
         {
            
             // Sätt IsOn till true. 
@@ -54,13 +54,3 @@ namespace Smart_Home
         }
     }
 }
-
-/*
-När jag tog bort virtual från TurnOn() fick jag kompileringsfel.
-
-Child classes kan inte använda override om metoden i basklassen
-inte är markerad som virtual.
-
-Override fungerar bara på metoder som är virtual,
-abstract eller override.
-*/

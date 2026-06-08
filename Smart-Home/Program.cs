@@ -42,31 +42,14 @@ namespace Smart_Home
             Console.WriteLine();
 
 
+            SmartLamp lamp1 = new SmartLamp("IKEA", "Hallway", 80);
+            Appliance lamp2 = lamp1;
+            lamp1.TurnOn();
+            lamp2.TurnOn();
 
 
         }
     }
 }
 
-/*
-1. Varför kan vi inte anropa Schedule() direkt på en variabel av typen Appliance?
 
-Eftersom Appliance inte har metoden Schedule().
-Bara klasser som implementerar ISchedulable har den metoden.
-
-2. Vad gör interface-kontrollen med "is"?
-
-Den kontrollerar om objektet implementerar ISchedulable.
-
-3. Varför behöver vi casta till ISchedulable?
-
-För att kunna använda Schedule()-metoden.
-
-4. Vilka apparater blev schemalagda?
-
-Washer, RobotVacuum och CoffeeMachine.
-
-5. Varför blev inte Refrigerator, Oven och AirConditioner schemalagda?
-
-Eftersom de inte implementerar ISchedulable.
-*/
