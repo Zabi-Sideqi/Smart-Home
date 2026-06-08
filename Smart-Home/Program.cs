@@ -32,6 +32,13 @@ namespace Smart_Home
 
             controller.ScheduleAllSchedulableDevices
                 (DateTime.Now.AddHours(2));
+            List<ISchedulable> schedulableDevices = controller.GetSchedulableDevices();
+            foreach (ISchedulable schedulable in schedulableDevices)
+            {
+                
+                // Skriv ut NextRun eller schemalägg apparaten. 
+                Console.WriteLine($"Next run: {schedulable.NextRun}");
+            }
             double totalEnergy = controller.GetTotalDailyEnergyUsage();
             
             Console.WriteLine($"Total daily energy usage: {totalEnergy} kWh");
@@ -54,27 +61,3 @@ namespace Smart_Home
 }
 
 
-/*
-Del 12
-
-1. Vad säger kompilatorn?
-
-Kompilatorn säger att PizzaOven inte kan override:a
-TurnOn() eftersom metoden är sealed i Oven.
-
-2. Varför får PizzaOven inte override:a TurnOn()?
-
-Eftersom Oven har markerat TurnOn() med sealed override.
-Då får inga klasser som ärver från Oven ändra metoden.
-
-3. När kan det vara rimligt att använda sealed override?
-
-När man vill låsa ett beteende så att framtida
-child classes inte kan ändra det.
-
-4. Vad kan PizzaOven fortfarande göra i stället?
-
-PizzaOven kan fortfarande override:a andra metoder
-som inte är sealed, till exempel GetInfo()
-eller GetDailyEnergyUsage().
-*/

@@ -11,9 +11,6 @@ namespace Smart_Home
         {
         } 
 
-        public override void TurnOn()
-        {
-            Console.WriteLine("Pizza oven starts at extra high temperature.");
-        }
+      
     }
 }

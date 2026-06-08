@@ -23,26 +23,3 @@ namespace Smart_Home
 
     }
 }
-/*
-1. Blir utskriften samma?
-
-Nej, utskriften blir olika.
-
-2. Vilken metod körs när variabeln har typen SmartLamp?
-
-SmartLamp.TurnOn() körs.
-
-3. Vilken metod körs när variabeln har typen Appliance?
-
-Appliance.TurnOn() körs.
-
-4. Varför är detta farligt eller förvirrande?
-
-Samma objekt kan ge olika resultat beroende på vilken typ variabeln har.
-Det kan göra koden svårare att förstå.
-
-5. Vad händer om du byter new till override?
-
-Då används polymorfism.
-Båda anropen skulle köra SmartLamp.TurnOn().
-*/ 
