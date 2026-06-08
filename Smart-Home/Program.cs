@@ -55,6 +55,11 @@ namespace Smart_Home
             lamp2.TurnOn();
 
 
+            Appliance foundDevice = controller.FindDeviceByBrand("LG");
+            if (foundDevice != null)
+            {
+                foundDevice.TurnOn();
+            }
         }
 
     }

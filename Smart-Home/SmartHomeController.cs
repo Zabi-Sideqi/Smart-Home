@@ -80,6 +80,22 @@ namespace Smart_Home
                 }
             }
         }
+        public Appliance FindDeviceByBrand(string brand)
+        {
+           
+            // Returnera första apparaten med rätt brand. 
+            // Om ingen finns kan du returnera null, 
+            // eller kasta ett eget felmeddelande. 
+           foreach (Appliance device in _devices)
+            {
+                if (device.Brand == brand)
+                {
+                    return device;
+                }
+                
+            }
+            return null;
+        }
         internal List<ISchedulable> GetSchedulableDevices()
         {
             List<ISchedulable> result = new List<ISchedulable>();
@@ -97,16 +113,3 @@ namespace Smart_Home
         }
     }
 }
-/*
-Varför kan listan vara List<ISchedulable>
-även om objekten egentligen är olika klasser?
-
-Eftersom alla objekten implementerar
-ISchedulable.
-
-De är olika klasser, men de följer samma
-interface och har därför Schedule()
-och NextRun.
-
-Därför kan de lagras i samma lista.
-*/
